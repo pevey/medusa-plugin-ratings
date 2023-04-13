@@ -1,10 +1,11 @@
 import { Router } from "express"
 import { getConfigFile } from "medusa-core-utils"
+import { ConfigModule } from "@medusajs/medusa/dist/types/global"
 import cors from "cors"
 import bodyParser from "body-parser"
 
-export default (rootDirectory) => {
-   const { configModule } = getConfigFile(rootDirectory, "medusa-config")
+export default (rootDirectory: string): Router | Router[] => {
+   const { configModule } = getConfigFile<ConfigModule>(rootDirectory, "medusa-config")
    const { projectConfig } = configModule
 
    const storeCorsOptions = {
