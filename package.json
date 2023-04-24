@@ -1,11 +1,12 @@
 {
-  "name": "medusa-plugin-reviews",
-  "version": "1.1.0",
+  "name": "medusa-plugin-productreviews",
+  "version": "1.1.1",
   "description": "Simple reviews and ratings for Medusajs",
   "repository": {
     "type": "git",
     "url": "https://github.com/pevey/medusa-plugin-reviews"
   },
+  "homepage": "https://pevey.com/medusa-plugin-productreviews",
   "author": "Lacey Pevey",
   "license": "MIT",
   "keywords": [
