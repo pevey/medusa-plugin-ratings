@@ -29,20 +29,42 @@ export default class ProductReviewService extends TransactionBaseService {
     })
   }
 
+  async getReview (id) {
+    const productReviewRepository = this.activeManager_.withRepository(this.productReviewRepository_)
+    return await productReviewRepository.findOne({
+      where: {
+        id
+      }
+    })
+  }
+
   async addProductReview (product_id, customer_id, display_name, content, rating) {
     if (!product_id || !customer_id || !display_name || !content || !rating) {
-      throw new Error("product review requires product_id, customer_id, display_name, content, and rating")
+      throw new Error("adding product review requires product_id, customer_id, display_name, content, and rating")
     }
     const productReviewRepository = this.activeManager_.withRepository(this.productReviewRepository_)
     const createdReview = productReviewRepository.create({
-      product_id: product_id,
-      customer_id: customer_id,
-      display_name: display_name,
-      content: content,
-      rating: rating,
+      product_id,
+      customer_id,
+      display_name,
+      content,
+      rating,
       approved: false
     })
     const productReview = await productReviewRepository.save(createdReview)
+    return productReview
+  }
+
+  async updateProductReview (id, display_name, content, rating) {
+    if (!id || !display_name || !content || !rating) {
+      throw new Error("updating a product review requires id, display_name, content, rating, and approved")
+    }
+    const productReviewRepository = this.activeManager_.withRepository(this.productReviewRepository_)
+    const productReview = productReviewRepository.update(id, {
+      display_name,
+      content,
+      rating
+    })
     return productReview
   }
 
@@ -52,10 +74,10 @@ export default class ProductReviewService extends TransactionBaseService {
     }
     const productReviewRepository = this.activeManager_.withRepository(this.productReviewRepository_)
     const productReview = productReviewRepository.update(id, {
-      display_name: display_name,
-      content: content,
-      rating: rating,
-      approved: approved
+      display_name,
+      content,
+      rating,
+      approved
     })
     return productReview
   }
