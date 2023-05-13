@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, TableForeignKey } from "@medusajs/typeorm"
+import { MigrationInterface, QueryRunner, TableForeignKey } from "typeorm"
 
 export class ProductReview1674838435739 implements MigrationInterface {
 
