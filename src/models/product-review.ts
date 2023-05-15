@@ -17,7 +17,7 @@ export class ProductReview extends BaseEntity {
   @Column({ type: "varchar", nullable: false })
   customer_id: string
 
-  @ManyToOne(() => Product)
+  @ManyToOne(() => Customer)
   @JoinColumn({ name: "customer_id" })
   customer: Customer
 

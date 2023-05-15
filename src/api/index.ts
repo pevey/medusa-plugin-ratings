@@ -4,7 +4,7 @@ import { Router } from "express"
 import * as bodyParser from "body-parser"
 //import { User, UserService, Customer, CustomerService } from "@medusajs/medusa"
 import { authenticateCustomer } from "@medusajs/medusa"
-import { MedusaError } from "medusa-core-utils"
+import { MedusaError } from "@medusajs/utils"
 import { z } from "zod"
 
 export default (rootDirectory: string): Router | Router[] => {
@@ -17,9 +17,11 @@ export default (rootDirectory: string): Router | Router[] => {
 
    // REVIEWS - GET ALL REVIEWS FOR A PRODUCT
 	//router.use("/store/products/:id/reviews", authenticateCustomer())
-	router.get("/store/products/:id/reviews", cors(storeCorsOptions), authenticateCustomer(), async (req, res) => {
-console.log('get reviews')
-console.log(req.user)
+	router.use(authenticateCustomer())
+	//router.get("/store/products/:id/reviews", cors(storeCorsOptions), authenticateCustomer(), async (req, res) => {
+	router.get("/store/products/:id/reviews", cors(storeCorsOptions), async (req, res) => {
+// console.log('get reviews')
+// console.log(req.user)
       const productReviewService = req.scope.resolve("productReviewService")
       productReviewService.getProductReviews(req.params.id).then((product_reviews) => {
          return res.json({product_reviews})
