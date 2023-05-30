@@ -1,5 +1,5 @@
-import { Product, Customer } from "@medusajs/medusa"
-import { BaseEntity, generateEntityId } from "@medusajs/utils"
+import { BaseEntity, Product, Customer } from "@medusajs/medusa"
+import { generateEntityId } from "@medusajs/utils"
 import { BeforeInsert, Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm"
 import { Max, Min } from "class-validator"
 

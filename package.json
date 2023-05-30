@@ -1,6 +1,6 @@
 {
 	"name": "medusa-plugin-ratings",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"description": "Simple reviews and ratings for Medusajs",
 	"repository": {
 		"type": "git",
@@ -18,7 +18,6 @@
 		"medusa"
 	],
 	"devDependencies": {
-		"@medusajs/medusa": "^1.10.1",
 		"cross-env": "^5.2.1",
 		"typeorm": "^0.3.16",
 		"typescript": "^4.4.4"
@@ -30,7 +29,8 @@
 		"watch": "tsc --watch"
 	},
 	"peerDependencies": {
-		"@medusajs/medusa": "^1.10.1"
+		"@medusajs/medusa": "^1.12.0",
+		"@medusajs/utils": "1.9.0"
 	},
 	"dependencies": {
 		"zod": "^3.21.4"

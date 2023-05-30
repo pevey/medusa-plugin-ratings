@@ -1,4 +1,4 @@
-import { TransactionBaseService } from '@medusajs/utils'
+import { TransactionBaseService } from '@medusajs/medusa'
 import { ProductReviewRepository } from '../repositories/product-review'
 
 export default class ProductReviewService extends TransactionBaseService {
