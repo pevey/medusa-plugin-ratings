@@ -49,10 +49,10 @@ adds a review for the product with the given id. The body of the request should 
 
 ```js
 {
-	customer_id: string!,
-	display_name: string!,
-	content: string!,
-	rating: number.min(0).max(5)!
+   customer_id: string!,
+   display_name: string!,
+   content: string!,
+   rating: number.min(0).max(5)!
 }
 ```
 
