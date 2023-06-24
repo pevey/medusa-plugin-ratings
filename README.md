@@ -61,7 +61,7 @@ Adds a review for the product with the given id. The request must come from a lo
 ```
 
 ### `POST /store/reviews/:id`
-Updates a review with the given id. The request must come from a logged in customer. The body of the request should be a json object with the following properties:
+Updates a review with the given id. The request must come from a logged in customer. Will not update if the logged in customer is not the customer who created the review. The body of the request should be a json object with the following properties:
 
 ```js
 {
