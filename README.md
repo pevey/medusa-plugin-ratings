@@ -20,6 +20,7 @@ If you are not familiar with Medusa, you can learn more on [the project web site
 
 ```bash
 yarn add medusa-plugin-blog
+medusa migrations run
 ```
 
 ## Configuration
@@ -36,24 +37,53 @@ const plugins = [
 ## API Endpoints
 
 ### `GET /store/products/:id/reviews`
-returns a json object with an array of reviews for the product with the given id
+Returns a json object with an array of reviews for the product with the given id
 
-### `GET /store/customers/:id/reviews`
-returns a json object with an array of reviews for the customer with the given id
+### `GET /store/customers/me/reviews`
+Returns a json object with an array of reviews for the logged in customer
 
 ### `GET /store/reviews/:id`
-returns a json object with the review with the given id
+Returns a json object with the review with the given id
 
 ### `POST /store/products/:id/reviews`
-adds a review for the product with the given id. The body of the request should be a json object with the following fields:
+Adds a review for the product with the given id. The request must come from a logged in customer.  The body of the request should be a json object with the following properties:
 
 ```js
 {
-   customer_id: string!,
    display_name: string!,
    content: string!,
    rating: number.min(0).max(5)!
 }
 ```
 
+### `POST /store/reviews/:id`
+Updates a review with the given id. The body of the request should be a json object with the following properties:
 
+```js
+{
+   display_name: string!,
+   content: string!,
+   rating: number.min(0).max(5)!
+}
+```
+
+### `GET /admin/products/:id/reviews`
+Returns a json object with an array of reviews for the product with the given id.  The request must come from a logged in admin user.
+
+### `GET /admin/customers/:id/reviews`
+Returns a json object with an array of reviews for the customer with the given customer id.  The request must come from a logged in admin user.
+
+### `POST /admin/reviews/:id`
+Updates a review with the given id. The request must come from a logged in admin user.  The body of the request should be a json object with the following properties:
+
+```js
+{
+   display_name: string!,
+   content: string!,
+   rating: number.min(0).max(5)!,
+   approved: boolean!
+}
+```
+
+### `DELETE /admin/reviews/:id`
+Deletes the review with the given id. Not a soft delete. The request must come from a logged in admin user.

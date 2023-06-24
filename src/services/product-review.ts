@@ -41,9 +41,9 @@ export default class ProductReviewService extends TransactionBaseService {
       })
    }
 
-   async addProductReview (product_id, customer_id, display_name, content, rating) {
+   async create(product_id, customer_id, display_name, content, rating) {
       if (!product_id || !customer_id || !display_name || !content || !rating) {
-         throw new Error("adding product review requires product_id, customer_id, display_name, content, and rating")
+         throw new Error("Adding product review requires product_id, customer_id, display_name, content, and rating")
       }
       /* @ts-ignore */
       const productReviewRepository = this.activeManager_.withRepository(this.productReviewRepository_)
@@ -59,23 +59,9 @@ export default class ProductReviewService extends TransactionBaseService {
       return productReview
    }
 
-   async updateProductReview (id, display_name, content, rating) {
+   async update(id, display_name, content, rating, approved = false) {
       if (!id || !display_name || !content || !rating) {
-         throw new Error("updating a product review requires id, display_name, content, rating, and approved")
-      }
-      /* @ts-ignore */
-      const productReviewRepository = this.activeManager_.withRepository(this.productReviewRepository_)
-      const productReview = productReviewRepository.update(id, {
-         display_name,
-         content,
-         rating
-      })
-      return productReview
-   }
-
-   async editProductReview (id, display_name, content, rating, approved) {
-      if (!id || !display_name || !content || !rating || !approved) {
-         throw new Error("updating a product review requires id, display_name, content, rating, and approved")
+         throw new Error("Updating a product review requires id, display_name, content, rating, and approved")
       }
       /* @ts-ignore */
       const productReviewRepository = this.activeManager_.withRepository(this.productReviewRepository_)
@@ -85,6 +71,16 @@ export default class ProductReviewService extends TransactionBaseService {
          rating,
          approved
       })
+      return productReview
+   }
+
+   async delete(id) {
+      if (!id) {
+         throw new Error("Deleting a product review requires id")
+      }
+      /* @ts-ignore */
+      const productReviewRepository = this.activeManager_.withRepository(this.productReviewRepository_)
+      const productReview = productReviewRepository.delete(id)
       return productReview
    }
 }

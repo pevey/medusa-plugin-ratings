@@ -33,8 +33,8 @@
       "watch": "tsc --watch"
    },
    "peerDependencies": {
-      "@medusajs/medusa": "^1.12.0",
-      "@medusajs/utils": "1.9.0"
+      "@medusajs/medusa": "^1.12.1",
+      "@medusajs/utils": "1.9.1"
    },
    "dependencies": {
       "zod": "^3.21.4"
