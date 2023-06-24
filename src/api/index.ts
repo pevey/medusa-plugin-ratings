@@ -14,7 +14,7 @@ export default (rootDirectory: string): Router | Router[] => {
 
    const router = Router()
 
-   // REVIEWS - GET ALL REVIEWS FOR A PRODUCT
+   // STORE - GET ALL REVIEWS FOR A PRODUCT
    router.get("/store/products/:id/reviews", cors(storeCorsOptions), async (req, res) => {
       const productReviewService = req.scope.resolve("productReviewService")
       productReviewService.getProductReviews(req.params.id).then((product_reviews) => {
@@ -22,7 +22,7 @@ export default (rootDirectory: string): Router | Router[] => {
       })
    })
 
-   // REVIEWS - GET ALL REVIEWS FOR A CUSTOMER
+   // STORE - GET ALL REVIEWS FOR A CUSTOMER
    router.get("/store/customers/me/reviews", cors(storeCorsOptions), authenticateCustomer(), async (req, res) => {
       const productReviewService = req.scope.resolve("productReviewService")
       productReviewService.getCustomerProductReviews(req.user.customer_id).then((product_reviews) => {
@@ -30,7 +30,7 @@ export default (rootDirectory: string): Router | Router[] => {
       })
    })
    
-   // REVIEWS - GET A SINGLE REVIEW
+   // STORE - GET A SINGLE REVIEW
    router.get("/store/reviews/:id", cors(storeCorsOptions), async (req, res) => {
       const productReviewService = req.scope.resolve("productReviewService")
       productReviewService.getReview(req.params.id).then((product_review) => {
@@ -38,7 +38,7 @@ export default (rootDirectory: string): Router | Router[] => {
       })
    })
    
-   // REVIEWS - ADD A NEW REVIEW FOR A PRODUCT
+   // STORE - ADD A NEW REVIEW FOR A PRODUCT
    router.use("/store/products/:id/reviews", bodyParser.json())
    router.post("/store/products/:id/reviews", cors(storeCorsOptions), authenticateCustomer(), async (req, res) => {
       const schema = z.object({
@@ -59,7 +59,7 @@ export default (rootDirectory: string): Router | Router[] => {
       }
    })
 
-   // REVIEWS - UPDATE A REVIEW FOR A PRODUCT
+   // STORE - UPDATE A REVIEW FOR A PRODUCT
    router.use("/store/reviews/:id", bodyParser.json())
    router.post("/store/reviews/:id", cors(storeCorsOptions), authenticateCustomer(), async (req, res) => {
       const schema = z.object({
@@ -84,7 +84,7 @@ export default (rootDirectory: string): Router | Router[] => {
       })
    })
 
-   // REVIEWS - ADMIN GET ALL REVIEWS FOR A PRODUCT
+   // ADMIN - GET ALL REVIEWS FOR A PRODUCT
    router.get("/admin/products/:id/reviews", cors(adminCorsOptions), authenticate(), async (req, res) => {
       const productReviewService = req.scope.resolve("productReviewService")
       productReviewService.getProductReviews(req.params.id).then((product_reviews) => {
@@ -92,7 +92,7 @@ export default (rootDirectory: string): Router | Router[] => {
       })
    })
 
-   // REVIEWS - ADMIN GET ALL REVIEWS BY A CUSTOMER
+   // ADMIN - GET ALL REVIEWS BY A CUSTOMER
    router.get("/admin/customers/:id/reviews", cors(adminCorsOptions), authenticate(), async (req, res) => {
       const productReviewService = req.scope.resolve("productReviewService")
       productReviewService.getCustomerProductReviews(req.params.id).then((product_reviews) => {
@@ -100,17 +100,17 @@ export default (rootDirectory: string): Router | Router[] => {
       })
    })
 
-   // REVIEWS - ADMIN EDIT A REVIEW FOR A PRODUCT
+   // ADMIN - EDIT A REVIEW FOR A PRODUCT
    router.use("/admin/reviews/:id", bodyParser.json())
    router.post("/admin/reviews/:id", cors(adminCorsOptions), authenticate(), async (req, res) => {
       const productReviewService = req.scope.resolve("productReviewService")
-      productReviewService.edit(req.params.id, req.body.display_name, req.body.content, req.body.rating, req.body.approved)
+      productReviewService.update(req.params.id, req.body.display_name, req.body.content, req.body.rating, req.body.approved)
       .then((product_review) => {
          return res.json({product_review})
       })
    })
 
-   // REVIEWS - ADMIN DELETE A REVIEW FOR A PRODUCT
+   // ADMIN - DELETE A REVIEW FOR A PRODUCT
    router.delete("/admin/reviews/:id", cors(adminCorsOptions), authenticate(), async (req, res) => {
       const productReviewService = req.scope.resolve("productReviewService")
       productReviewService.delete(req.params.id).then(() => {
