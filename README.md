@@ -50,7 +50,7 @@ Returns a json object with an array of reviews for the logged in customer
 Returns a json object with the review with the given id
 
 ### `POST /store/products/:id/reviews`
-Adds a review for the product with the given id. The request must come from a logged in customer.  The body of the request should be a json object with the following properties:
+Adds a review for the product with the given id. The request must come from a logged in customer. The body of the request should be a json object with the following properties:
 
 ```js
 {
@@ -61,7 +61,7 @@ Adds a review for the product with the given id. The request must come from a lo
 ```
 
 ### `POST /store/reviews/:id`
-Updates a review with the given id. The body of the request should be a json object with the following properties:
+Updates a review with the given id. The request must come from a logged in customer. The body of the request should be a json object with the following properties:
 
 ```js
 {
