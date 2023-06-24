@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.3.0
+
+### Patch Changes
+
+- Add admin UI support
+- Bump versions on peer deps
+- Update auth checking
+- Add some admin routes
+
 ## 1.2.0
 
 ### Patch Changes

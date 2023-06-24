@@ -34,6 +34,10 @@ const plugins = [
 ]
 ```
 
+## Usage
+
+Frontend code examples are not currently included.  API is detailed below.  
+
 ## API Endpoints
 
 ### `GET /store/products/:id/reviews`
@@ -66,6 +70,8 @@ Updates a review with the given id. The body of the request should be a json obj
    rating: number.min(0).max(5)!
 }
 ```
+
+When a customer updates a review, the approved boolean is set back to false.  It can then be re-reviewed and reapproved.
 
 ### `GET /admin/products/:id/reviews`
 Returns a json object with an array of reviews for the product with the given id.  The request must come from a logged in admin user.
