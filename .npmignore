@@ -6,7 +6,6 @@ node_modules
 !index.js
 yarn.lock
 src
-dist
 .yarn
 .gitignore
 .eslintrc

@@ -29,7 +29,13 @@ Enable in your medusa-config.js file similar to other plugins:
 
 ```bash
 const plugins = [
-  `medusa-plugin-ratings`,
+   ...
+   {
+      resolve: `medusa-plugin-ratings`,
+      options: {
+         enableUI: true
+      }
+   },
   ...
 ]
 ```

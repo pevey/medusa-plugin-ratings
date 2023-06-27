@@ -18,6 +18,7 @@
       "medusa"
    ],
    "devDependencies": {
+      "@medusajs/admin-ui": "^2.0.0-beta-20230619170349",
       "body-parser": "^1.20.2",
       "class-validator": "^0.14.0",
       "cors": "^2.8.5",
@@ -29,10 +30,11 @@
    "scripts": {
       "prepare": "cross-env NODE_ENV=production yarn run build",
       "test": "jest --passWithNoTests src",
-      "build": "tsc",
+      "build": "tsc && medusa-admin bundle",
       "watch": "tsc --watch"
    },
    "peerDependencies": {
+      "@medusajs/admin": "^7.0.0-beta-20230619170349",
       "@medusajs/medusa": "^1.12.1",
       "@medusajs/utils": "1.9.1"
    },
