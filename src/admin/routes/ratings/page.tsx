@@ -1,5 +1,5 @@
 import { RouteConfig } from "@medusajs/admin"
-import Star from "../../icons/star"
+import Star from "../../components/icons/star"
 
 const RatingsPage = () => {
   return (
