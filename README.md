@@ -19,7 +19,7 @@ If you are not familiar with Medusa, you can learn more on [the project web site
 ## Installation
 
 ```bash
-yarn add medusa-plugin-blog
+yarn add medusa-plugin-ratings
 medusa migrations run
 ```
 

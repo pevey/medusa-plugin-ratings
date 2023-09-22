@@ -19,7 +19,12 @@ const ReviewTable = ({ reviews, isApproved }) => {
                },
                {
                   Header: "Review",
-                  accessor: "content",
+                  accessor: "content"
+               },
+               {
+                  id: "menu",
+                  Header: "",
+                  accessor: "approved"
                }
             ],
          },
@@ -43,7 +48,7 @@ const ReviewTable = ({ reviews, isApproved }) => {
             {headerGroups.map((headerGroup) => (
                <tr {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map((column) => (
-                     <th {...column.getHeaderProps()} className="">
+                     <th {...column.getHeaderProps()} className="p-2 pt-0 text-center first-of-type:text-left">
                         {column.render("Header")}
                      </th>
                   ))}
@@ -57,7 +62,7 @@ const ReviewTable = ({ reviews, isApproved }) => {
                   <tr {...row.getRowProps()}>
                      {row.cells.map((cell) => {
                         return (
-                           <td {...cell.getCellProps()} className="border px-4 py-2">
+                           <td {...cell.getCellProps()} className="border-t border-b p-2 text-left">
                               {cell.render("Cell")}
                            </td>
                         )

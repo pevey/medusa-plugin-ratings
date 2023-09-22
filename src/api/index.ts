@@ -1,7 +1,6 @@
 import cors from "cors"
 import configLoader from "@medusajs/medusa/dist/loaders/config"
-import { Router } from "express"
-import * as bodyParser from "body-parser"
+import { json, Router } from "express"
 import { authenticate, authenticateCustomer } from "@medusajs/medusa"
 import { MedusaError } from "@medusajs/utils"
 import { z } from "zod"
@@ -39,7 +38,7 @@ export default (rootDirectory: string): Router | Router[] => {
    })
    
    // STORE - ADD A NEW REVIEW FOR A PRODUCT
-   router.use("/store/products/:id/reviews", bodyParser.json())
+   router.use("/store/products/:id/reviews", json())
    router.post("/store/products/:id/reviews", cors(storeCorsOptions), authenticateCustomer(), async (req, res) => {
       const schema = z.object({
          display_name: z.string().min(1),
@@ -60,7 +59,7 @@ export default (rootDirectory: string): Router | Router[] => {
    })
 
    // STORE - UPDATE A REVIEW FOR A PRODUCT
-   router.use("/store/reviews/:id", bodyParser.json())
+   router.use("/store/reviews/:id", json())
    router.post("/store/reviews/:id", cors(storeCorsOptions), authenticateCustomer(), async (req, res) => {
       const schema = z.object({
          display_name: z.string().min(1),
@@ -101,7 +100,7 @@ export default (rootDirectory: string): Router | Router[] => {
    })
 
    // ADMIN - EDIT A REVIEW FOR A PRODUCT
-   router.use("/admin/reviews/:id", bodyParser.json())
+   router.use("/admin/reviews/:id", json())
    router.post("/admin/reviews/:id", cors(adminCorsOptions), authenticate(), async (req, res) => {
       const productReviewService = req.scope.resolve("productReviewService")
       productReviewService.update(req.params.id, req.body.display_name, req.body.content, req.body.rating, req.body.approved)
