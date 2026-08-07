@@ -1,3 +1,7 @@
+# DEPRECATED
+
+The new home for this project repo is https://github.com/pevey/medusa-plugins
+
 # medusa-plugin-ratings
 
 Simple reviews and ratings for Medusajs
